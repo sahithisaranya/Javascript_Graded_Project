@@ -30,8 +30,18 @@ input[type=submit]{
     border-radius: 4px;
     background-color: rgb(236, 197, 123);
     color:black;
+    transform:translateX(120%);
 }
 
 body{
     background-color: rgb(181, 192, 228);
+}
+
+.container{
+    transform: translateX(50%);
+    transform:translateY(100%)
+}
+
+#msg{
+    color:rgb(236, 240, 37);
 }
