@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    
+}
+.login_section{
+    max-width: 400px;
+    max-height: 500px;
+    margin:auto;
+    border-radius: 5px;
+    padding:50px;
+    background-color: rgb(97, 112, 72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+input[type=text], input[type=password]{
+    padding: 8px 8px;
+    display: inline-block;
+    border: 1px;
+    border-style: solid;
+    border-radius: 2px;
+}
+
+input[type=submit]{
+    padding: 8px 8px;
+    display: inline-block;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(236, 197, 123);
+    color:black;
+}
+
+body{
+    background-color: rgb(181, 192, 228);
+}
