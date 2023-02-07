@@ -1,6 +1,8 @@
 localStorage.setItem('username', "glearner");
 localStorage.setItem('password', "glearning");
 
+window.history.forward();
+
 const loginBtnElement = document.getElementById('loginBtn');
 if (loginBtnElement) {
     loginBtnElement.addEventListener("click", ()=> {
@@ -17,7 +19,9 @@ if (loginBtnElement) {
 
         if (userName === userNameLocal && pswd === pswdLocal) {
             displayElement.innerHTML="Redirecting...";
+            window.location.assign("./resume_page.html");
             console.log("login successful");
+
         }
         else {
             displayElement.innerHTML="Invalid username/password";
@@ -27,3 +31,4 @@ if (loginBtnElement) {
         event.preventDefault();
     });
 }
+
