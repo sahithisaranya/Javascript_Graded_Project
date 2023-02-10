@@ -1,15 +1,8 @@
-const getJSONData=function(){
-    fetch("./data.json")
-        .then((response)=>response.json())
-        .then(value=function(){
-            return value;
-        });
-}
+import {ResumeApp} from "./Resume/resume-app.js";
 
-const previousBtnElement = document.getElementById('previous');
-if (previousBtnElement) {
-    previousBtnElement.addEventListener("click", ()=> {
-        console.log(getJSONData());
-        
-    });
-}
+const resumeApp=new ResumeApp();
+
+
+
+resumeApp.init();
+

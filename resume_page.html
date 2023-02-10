@@ -7,7 +7,7 @@
     <title>Applicant Resume</title>
     <link rel="stylesheet" type="text/css" href="./resume-styles.css">
 </head>
-<body>
+<body class="resume-body">
     <div class="search-section">
         <ul class="search">
             <li>
@@ -15,7 +15,7 @@
                 <button id="previous">Previous</button>
             </li>
             <li>
-                <input type="text" class="search-text" placeholder="search for keywords..."/>
+                <input type="text" class="filter-text" placeholder="keywords to filter job applications..."/>
             </li>
             <li>
                 <button class="next">Next</button>
@@ -25,29 +25,33 @@
     
     <div class="applicant-section">
         <div class="applicant title">
-            <h1>John Doe</h1>
-            <h4>Applied For: Software Engineer</h4>
+            <h1 class="applicant-name">xxxx xxxx</h1>
+            <h4 class="applied-for">Applied For: Software Engineer</h4>
         </div>
         <div class="applicant pic">
-            <img class="applicant-img" src="./applicant.png" alt=""/>
+            <img class="applicant-img" src="./applicant.png"/>
         </div>
 
         <div class="resume personal">
             <p>Personal Information</p>
-            <div class="personal-info">
-
-            </div>
+            <div class="personal-info"></div>
             <p>Technical Skills</p>
-            <div class="technical-skills">
-
-            </div>
+            <div class="technical-skills"></div>
             <p>Hobbies</p>
-            <div class="hobbies">
-
-            </div>
+            <div class="hobbies"></div>
         </div>
+
         <div class="resume work">
-            hello resume details
+            <h3>Work Experience in previous company</h3>
+            <div class="exp-prev-company"></div>
+            <h3>Projects</h3>
+            <div class="projects"></div>
+            <h3>Education</h3>
+            <div class="education"></div>
+            <h3>Internship</h3>
+            <div class="internship"></div>
+            <h3>Achievements</h3>
+            <div class="achievements"></div>
         </div>
     </div>
 
