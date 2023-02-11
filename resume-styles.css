@@ -18,7 +18,7 @@ body{
     padding:20px
 }
 
-#previous, .next{
+#previous, #next{
     background-color: rgb(240, 232, 121);
     border: none;
     border-radius: 3px;
