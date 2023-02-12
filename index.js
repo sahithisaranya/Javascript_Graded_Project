@@ -1,7 +1,7 @@
 localStorage.setItem('username', "glearner");
 localStorage.setItem('password', "glearning");
 
-window.history.forward();
+
 
 const loginBtnElement = document.getElementById('loginBtn');
 if (loginBtnElement) {

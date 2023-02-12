@@ -1,5 +1,7 @@
 class Resume{
-    constructor(){}
+    constructor(){
+        
+    }
     
     getJSONData(){
         return fetch("./data.json")
