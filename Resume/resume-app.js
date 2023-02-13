@@ -8,6 +8,7 @@ class ResumeApp {
         this.id = 0;
         let json;
         this.json = json;
+        this.enterpressed=false;
     }
     init() {
         this.id = 0;
@@ -42,25 +43,58 @@ class ResumeApp {
         //nextBtnElement.param=this;
 
         const filterElement = document.querySelector(".filter-text");
-        filterElement.param = this;
+        //filterElement.param = this;
         const currentObj = this;
-        filterElement.addEventListener("keypress", currentObj.searchJob);
+        //filterElement.addEventListener("keypress", currentObj.searchJob);
 
+        filterElement.onkeypress=function(event){
+            console.log("key pressed");
+            if (event.key == "Enter" || event.keyCode == 13) {
+                console.log("search entered");
+                const eventTarget = event.target;
+                const job = eventTarget.value.toLowerCase();
+                
+                console.log(currentObj.enterCount);
+                //const currentJsonObj = eventTarget.param;
+                console.log("job = " + job);
+                console.log("current json obj json= " + currentObj.json)
+                
+                const filteredJson = currentObj.json.filter(resume => resume.basics.AppliedFor.toLowerCase().includes(job));
+                currentObj.json=filteredJson;
+                console.log("filtered json = " + filteredJson);
+                console.log("Current json obj json = "+currentObj.json);
+    
+                if (filteredJson.length > 0) {
+                    currentObj.id = 0;
+                    document.getElementById("previous").disabled = true;
+                    if (filteredJson.length == 1) {
+                        document.getElementById("next").disabled = true;
+                    }
+                    else {
+                        document.getElementById("next").disabled = false;
+                    }
+                    currentObj.updateControls(filteredJson);
+                }
+                else {
+                    console.log("no data found");
+                    currentObj.init();
+                    
+                    window.open('./error.html','popUpWindow','height=300,width=400,left=500,top=500,resizable=no,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no, status=yes');
+                }
+            }
+        }
 
+        
         prevBtnElement.onclick = function () {
             console.log("previous button clicked");
             currentObj.previous();
         }
-
 
         nextBtnElement.onclick = function () {
             console.log("next button clicked");
             console.log(currentObj.json);
             currentObj.next();
         }
-
-
-
     }
 
     previous() {
@@ -73,37 +107,39 @@ class ResumeApp {
         this.displayNextResume();
     }
 
-    searchJob(event) {
-        if (event.key == "Enter" || event.keyCode == 13) {
-            console.log("search entered");
-            const eventTarget = event.target;
-            const job = eventTarget.value.toLowerCase();
-            const currentJsonObj = eventTarget.param;
-            console.log("job = " + job);
-            console.log("current json obj json= " + currentJsonObj.json)
+    // searchJob(event) {
+    //     if (event.key == "Enter" || event.keyCode == 13) {
             
-            const filteredJson = currentJsonObj.json.filter(resume => resume.basics.AppliedFor.toLowerCase().includes(job));
-            currentJsonObj.json=filteredJson;
-            console.log("filtered json = " + filteredJson);
-            console.log("Current jsong obj json = "+currentJsonObj.json);
+    //         console.log("search entered");
+    //         const eventTarget = event.target;
+    //         const job = eventTarget.value.toLowerCase();
+    //         const currentJsonObj = eventTarget.param;
+    //         console.log("job = " + job);
+    //         console.log("current json obj json= " + currentJsonObj.json)
+            
+    //         const filteredJson = currentJsonObj.json.filter(resume => resume.basics.AppliedFor.toLowerCase().includes(job));
+    //         currentJsonObj.json=filteredJson;
+    //         console.log("filtered json = " + filteredJson);
+    //         console.log("Current json obj json = "+currentJsonObj.json);
 
-            if (filteredJson.length > 0) {
-                currentJsonObj.id = 0;
-                document.getElementById("previous").disabled = true;
-                if (filteredJson.length == 1) {
-                    document.getElementById("next").disabled = true;
-                }
-                else {
-                    document.getElementById("next").disabled = false;
-                }
-                currentJsonObj.updateControls(filteredJson);
-            }
-            else {
-                console.log("no data found");
-                currentJsonObj.init();
-            }
-        }
-    }
+    //         if (filteredJson.length > 0) {
+    //             currentJsonObj.id = 0;
+    //             document.getElementById("previous").disabled = true;
+    //             if (filteredJson.length == 1) {
+    //                 document.getElementById("next").disabled = true;
+    //             }
+    //             else {
+    //                 document.getElementById("next").disabled = false;
+    //             }
+    //             currentJsonObj.updateControls(filteredJson);
+    //         }
+    //         else {
+    //             console.log("no data found");
+    //             currentJsonObj.init();
+    //             window.open('./error.html','popUpWindow','height=300,width=400,left=500,top=500,resizable=no,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no, status=yes');
+    //         }
+    //     }
+    // }
 
     displayNextResume() {
         if (this.id >= this.json.length - 1) {
@@ -111,6 +147,10 @@ class ResumeApp {
         }
         else if (this.id > 0 && this.id < this.json.length) {
             document.getElementById("previous").disabled = false;
+        }
+
+        if(this.id==1 && this.json.length==2){
+            document.getElementById("previous").disabled=false;
         }
         this.updateControls(this.json);
     }
@@ -123,6 +163,11 @@ class ResumeApp {
         else if (this.id >= 0 && this.id < this.json.length) {
             document.getElementById("next").disabled = false;
         }
+
+        if(this.id==0 && this.json.length==2){
+            document.getElementById("next").disabled=false;
+        }
+
         this.updateControls(this.json);
     }
     // const nextBtnElement = document.getElementById("next");
